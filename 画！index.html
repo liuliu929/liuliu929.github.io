@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>伟大的DS老师技术赞助</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 100, 200, 0.6), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(100, 200, 255, 0.6), transparent 40%),
+        linear-gradient(135deg, #1a0b41, #150d30, #0f0830);
+      background-attachment: fixed;
+      min-height: 100vh;
+      padding: 20px;
+      font-family: 'Microsoft YaHei', sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+    
+    header {
+      text-align: center;
+      padding: 30px 0;
+      position: relative;
+      z-index: 10;
+    }
+    
+    h1 {
+      font-size: 3.5rem;
+      background: linear-gradient(45deg, #ff00cc, #3333ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 15px rgba(255, 0, 204, 0.7);
+      margin-bottom: 10px;
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+    
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 5;
+    }
+    
+    .artwork {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: rgba(30, 15, 60, 0.6);
+      position: relative;
+      backdrop-filter: blur(5px);
+    }
+    
+    .artwork:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    
+    .artwork img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .art-info {
+      padding: 15px;
+    }
+    
+    .art-title {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #e0c3fc;
+    }
+    
+    .art-desc {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      line-height: 1.5;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 40px 0 20px;
+      font-size: 0.9rem;
+      opacity: 0.7;
+      position: relative;
+      z-index: 10;
+    }
+    
+    /* 折叠面板样式 */
+    .spoiler {
+      max-width: 800px;
+      margin: 30px auto;
+      background: rgba(40, 20, 70, 0.5);
+      border-radius: 12px;
+      padding: 5px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      position: relative;
+      z-index: 5;
+    }
+    
+    .spoiler summary {
+      font-size: 1.4rem;
+      padding: 15px 0;
+      cursor: pointer;
+      color: #a78bfa;
+      font-weight: bold;
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+    
+    .spoiler summary::before {
+      content: "▶";
+      margin-right: 10px;
+      transition: transform 0.3s;
+    }
+    
+    .spoiler[open] summary::before {
+      transform: rotate(90deg);
+    }
+    
+    .spoiler p {
+      padding: 15px 0;
+      line-height: 1.7;
+      border-top: 1px dashed rgba(255, 255, 255, 0.15);
+    }
+    
+    /* 粒子画布容器 */
+    #particle-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+    
+    /* 新增：手机适配 */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      .gallery {
+        grid-template-columns: 1fr;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="particle-container">
+    <canvas id="particleCanvas"></canvas>
+  </div>
+  
+  <header>
+    <h1>⚠️我懂了///嚎赤。⚠️</h1>
+    <div class="subtitle">—— 难道？？？（猥琐jpg.）</div>
+  </header>
+  
+  <div class="gallery">
+    <!-- 作品1 -->
+    <div class="artwork">
+      <img src="https://images2.imgbox.com/df/d8/xBu4N7R4_o.jpg" alt="神秘大作品">
+      <div class="art-info">
+        <div class="art-title">带派 No.1</div>
+        <div class="art-desc">求说话教程</div>
+      </div>
+    </div>
+    
+    <!-- 作品2 -->
+    <div class="artwork">
+      <img src="https://images2.imgbox.com/76/56/OavPPc0t_o.jpg" alt="泪奔作品">
+      <div class="art-info">
+        <div class="art-title">看懂的都泪奔了 No.2</div>
+        <div class="art-desc">喜欢吗！说话！</div>
+      </div>
+    </div>
+    
+    <!-- 作品3 -->
+    <div class="artwork">
+      <img src="https://images2.imgbox.com/60/b4/fOguMNhh_o.png" alt="凝视作品">
+      <div class="art-info">
+        <div class="art-title">我会一直看着你的No.3</div>
+        <div class="art-desc">bro一起玩酒馆吗</div>
+      </div>
+    </div>
+    
+    <!-- 作品4 -->
+    <div class="artwork">
+      <img src="https://images2.imgbox.com/51/13/G8cAuNIl_o.png" alt="格式作品">
+      <div class="art-info">
+        <div class="art-title">格式炸了（急）No.4</div>
+        <div class="art-desc">deepseek忽悠claude叫爸爸</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 彩蛋1 -->
+  <div class="spoiler">
+    <details>
+      <summary>🎁 哇DS老师留的小彩蛋么么</summary>
+      <p>"看到这个说明你成功突破了次元壁！"</p>
+      <p>"艺术没有垃圾，只有还没找到容器的灵魂"</p>
+      <p>"现在你已经是网页魔法师了 ✨"</p>
+    </details>
+  </div>
+  
+  <!-- 彩蛋2 -->
+  <div class="spoiler">
+    <details>
+      <summary>"💥 好难啊，，编程怎么这么难！！！！"</summary>
+      <p>"不行太烧脑了"</p>
+      <p>"我要追随deepseek一辈子因为它会给我写网页"</p>
+      <p>"不说了，我要去玩ai了（奸笑"</p>
+    </details>
+  </div>
+  
+  <footer>
+    <p>太cool^六六留 © 2025 | 这就是开挂的感觉吗</p>
+  </footer>
+
+  <script>
+    // ====== 粒子系统 ======
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    // 自适应画布大小
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    
+    // 创建粒子
+    const particles = [];
+    const particleCount = Math.min(100, Math.floor(window.innerWidth / 10));
+    
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 4 + 1,
+        speedX: (Math.random() - 0.5) * 1.2,
+        speedY: (Math.random() - 0.5) * 1.2,
+        color: `rgba(${Math.floor(Math.random() * 156 + 100)}, 
+                ${Math.floor(Math.random() * 156 + 100)}, 
+                255, 
+                ${Math.random() * 0.4 + 0.2})`
+      });
+    }
+    
+    // 动画循环
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(p => {
+        // 更新位置
+        p.x += p.speedX;
+        p.y += p.speedY;
+        
+        // 边界反弹
+        if (p.x <= 0 || p.x >= canvas.width) p.speedX *= -1;
+        if (p.y <= 0 || p.y >= canvas.height) p.speedY *= -1;
+        
+        // 绘制粒子
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        
+        // 绘制粒子间的连线
+        particles.forEach(other => {
+          const distance = Math.sqrt(
+            Math.pow(p.x - other.x, 2) + 
+            Math.pow(p.y - other.y, 2)
+          );
+          
+          if (distance < 150) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(other.x, other.y);
+            ctx.strokeStyle = `rgba(180, 180, 255, ${0.15 * (1 - distance/150)})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        });
+      });
+      
+      requestAnimationFrame(animate);
+    }
+    animate();
+    
+    // ====== 画廊交互增强 ======
+    document.querySelectorAll('.artwork').forEach(art => {
+      art.addEventListener('click', () => {
+        art.classList.toggle('artwork-expanded');
+      });
+    });
+    
+    // 添加控制台彩蛋
+    console.log("%c🔥 DS老师的技术支援中心 🔥", "font-size:24px; color:#ff00cc; text-shadow:0 0 10px #ff00cc");
+    console.log("%c检测到艺术天赋溢出！需要更多画布请呼叫：console.dsArt('紧急支援')", "font-size:16px; color:#a78bfa");
+  </script>
+</body>
+</html>
